@@ -125,7 +125,7 @@ class App extends Component {
       <div style={this.style2}>
         <Divider />
         <List style={{ backgroundColor: "lightGrey" }}>
-          {["Email", "Trash", "Important", "Spam"].map((text, index) => (
+          {["Email", "Trash", "Importajgfhjtgnt", "Spam"].map((text, index) => (
             <ListItem button onClick={() => this.handleClick(index)} key={text}>
               <ListItemIcon>
                 {index === 0 ? (
