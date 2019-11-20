@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Comp1 from "./Comp1";
+import Comp1 from "./personalInfo";
 import Comp2 from "./Comp2";
 import Comp3 from "./Comp3";
 import Comp4 from "./Comp4";
