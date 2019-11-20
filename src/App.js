@@ -52,106 +52,48 @@ class App extends Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
-  Emails = [
-    {
-      sender: "ahmed",
-      content: "Meeting Reschduled",
-      datetime: "02-10 17:00",
-      avatar: "./images/ahmed.png",
-      status: true,
-      read: false,
-      favorite: false
-    },
-    {
-      sender: "George",
-      content: "Sick Leave",
-      datetime: "10-10 07:00",
-      avatar: "./images/george.png",
-      status: true,
-      read: false,
-      favorite: false
-    },
-    {
-      sender: "gillian",
-      content: "Class cancelation",
-      datetime: "02-10 17:00",
-      avatar: "./images/gillian.png",
-      status: true,
-      read: false,
-      favorite: false
-    },
-    {
-      sender: "hania",
-      content: "Enemy AC130 Above",
-      datetime: "12-01 00:00",
-      avatar: "./images/hania.png",
-      status: true,
-      read: false,
-      favorite: false
-    },
-    {
-      sender: "mariam",
-      content: "Enemy AC130 Above",
-      datetime: "12-01 00:00",
-      avatar: "./images/mariam.png",
-      status: true,
-      read: false,
-      favorite: false
-    },
-    {
-      sender: "robert",
-      content: "Enemy AC130 Above",
-      datetime: "12-01 00:00",
-      avatar: "./images/robert.png",
-      status: true,
-      read: false,
-      favorite: false
-    }
-  ];
-  handleDelete = i => {
-    this.Emails[i].status = false;
-    this.setState({ del: !this.state.del });
-  };
-  handleRead = i => {
-    this.Emails[i].read = true;
-    this.setState({ read: !this.state.read });
-  };
-  handleFavorite = i => {
-    this.Emails[i].favorite = !this.state.favorite;
-    this.setState({ favorite: !this.state.favorite });
-  };
+
   render() {
     const drawer = (
       <div style={this.style2}>
         <Divider />
-        <List style={{ backgroundColor: "lightGrey" }}>
-          {["Email", "Trash", "Importajgfhjtgnt", "Spam"].map((text, index) => (
-            <ListItem button onClick={() => this.handleClick(index)} key={text}>
-              <ListItemIcon>
-                {index === 0 ? (
-                  <InboxIcon />
-                ) : index === 1 ? (
-                  <DeleteSweepIcon />
-                ) : index === 2 ? (
-                  <StarIcon />
-                ) : (
-                  <MailIcon />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+        <List
+          style={{
+            height: 1000
+          }}
+        >
+          {["Who Am I", "Trash", "Importajgfhjtgnt", "Spam"].map(
+            (text, index) => (
+              <ListItem
+                button
+                onClick={() => this.handleClick(index)}
+                key={text}
+              >
+                <ListItemIcon>
+                  {index === 0 ? (
+                    <InboxIcon />
+                  ) : index === 1 ? (
+                    <DeleteSweepIcon />
+                  ) : index === 2 ? (
+                    <StarIcon />
+                  ) : (
+                    <MailIcon />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            )
+          )}
         </List>
-        <Divider />
       </div>
     );
     return (
-      <React.Fragment>
+      <div>
         {this.state.open ? (
           <Drawer anchor="left" variant="permanent" open>
             <div style={{ textAlign: "center" }}>
               <Typography variant="h6" noWrap>
-                CP3170
+                Categories
               </Typography>
             </div>
 
@@ -159,12 +101,17 @@ class App extends Component {
           </Drawer>
         ) : null}
 
-        <AppBar style={this.style1} position="permanent">
+        <AppBar
+          style={this.state.open ? this.style1 : null}
+          position="permanent"
+        >
           <Toolbar>
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={this.handleDrawerOpen}
+              onClick={
+                this.state.open ? this.handleDrawerClose : this.handleDrawerOpen
+              }
               edge="start"
             >
               <MenuIcon />
@@ -177,29 +124,16 @@ class App extends Component {
 
         <Container style={{ marginLeft: 300 }}>
           {this.state.flag === 0 ? (
-            <Comp1
-              Emails={this.Emails}
-              onDel={this.handleDelete}
-              onRead={this.handleRead}
-              onFav={this.handleFavorite}
-            />
+            <Comp1 />
           ) : this.state.flag === 1 ? (
-            <Comp2
-              Emails={this.Emails}
-              onDel={this.handleDelete}
-              onRead={this.handleRead}
-            />
+            <Comp2 />
           ) : this.state.flag === 2 ? (
-            <Comp3
-              Emails={this.Emails}
-              onDel={this.handleDelete}
-              onRead={this.handleRead}
-            />
+            <Comp3 />
           ) : (
             <Comp4 />
           )}
         </Container>
-      </React.Fragment>
+      </div>
     );
   }
 }

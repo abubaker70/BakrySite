@@ -19,64 +19,17 @@ class Comp1 extends Component {
   render() {
     return (
       <React.Fragment>
-        <table>
-          {/* <thead>
-            <tr>
-              <th>sender</th>
-              <th>content</th>
-              <th>date and time</th>
-              <th>delete</th>
-            </tr>
-          </thead> */}
-          <tbody>
-            {this.props.Emails.map((e, index) => {
-              return (
-                <tr key={index}>
-                  {e.status ? (
-                    <React.Fragment>
-                      <AppBar style={this.style5} position="static">
-                        <Toolbar
-                          onClick={() => this.props.onRead(index)}
-                          style={e.read ? this.style4 : this.style3}
-                        >
-                          <Avatar
-                            alt="Remy Sharp"
-                            src={e.avatar}
-                            style={this.style2}
-                          />
-                          <Typography style={this.style1} variant="h6">
-                            {e.sender}
-                          </Typography>
-                          <Typography style={this.style2} variant="h6">
-                            {e.content}
-                          </Typography>
-                          <IconButton style={this.style2} aria-label="delete">
-                            <DeleteRoundedIcon
-                              onClick={() => this.props.onDel(index)}
-                            ></DeleteRoundedIcon>
-                          </IconButton>
-                          <IconButton aria-label="important">
-                            {e.favorite ? (
-                              <FavoriteIcon
-                                onClick={() => this.props.onFav(index)}
-                              ></FavoriteIcon>
-                            ) : (
-                              <FavoriteBorderIcon
-                                onClick={() => this.props.onFav(index)}
-                              ></FavoriteBorderIcon>
-                            )}
-                          </IconButton>
-                        </Toolbar>
-                      </AppBar>
-
-                      <td></td>
-                    </React.Fragment>
-                  ) : null}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <p>
+          My name is Abubaker Nasir, I’m an 18 year old Sudanese guy. Who has
+          lived his whole life in Qatar. I only go to Sudan on Vacations or
+          special occasion. I live with my parents and 3 brothers, two younger
+          than me and one older.
+        </p>
+        <p>
+          I registered for CNA-Q and got accepted for the winter semester of
+          2016. Non of my family members had ever studied here before, so it was
+          a new experience for me.{" "}
+        </p>
       </React.Fragment>
     );
   }
