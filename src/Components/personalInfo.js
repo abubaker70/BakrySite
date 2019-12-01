@@ -8,17 +8,13 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 
-class Comp1 extends Component {
+class personalInfo extends Component {
   state = { flag: false };
-  style1 = { marginRight: 100 };
-  style2 = { marginRight: 15 };
-  style3 = { width: 1000, backgroundColor: "lightGrey", color: "black" };
-  style4 = { width: 1000, backgroundColor: "white", color: "black" };
-  style5 = { marginTop: 20 };
-  style6 = { marginTop: 20 };
+
   render() {
     return (
       <React.Fragment>
+        <h2>About Me</h2>
         <p>
           My name is Abubaker, I am 20 years old, and I’ve been living in Qatar
           for the last 20 years. I'm originally from Sudan, but I only go to
@@ -50,4 +46,4 @@ class Comp1 extends Component {
   }
 }
 
-export default Comp1;
+export default personalInfo;

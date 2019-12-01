@@ -1,27 +1,21 @@
 import React, { Component } from "react";
-import Comp1 from "./personalInfo";
-import Comp2 from "./Comp2";
-import Comp3 from "./Comp3";
-import Comp4 from "./Comp4";
-import PropTypes from "prop-types";
+import Comp1 from "./Components/personalInfo";
+import Grid from "@material-ui/core/Grid";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+
+import Nature1 from "./Components/Nature1";
+import Home from "./Components/Home";
+import Country from "./Components/Country";
+import History from "./Components/History";
 import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
-import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import StarIcon from "@material-ui/icons/Star";
 import { Container } from "@material-ui/core";
-import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -34,17 +28,17 @@ class App extends Component {
 
   handleClick = i => {
     console.log(i);
-    if (i + 1 == 1) {
+    if (i == 1) {
       this.setState({ flag: 0 });
-    } else if (i + 1 == 2) {
+    } else if (i == 2) {
       this.setState({ flag: 1 });
-    } else if (i + 1 == 3) {
+    } else if (i == 3) {
       this.setState({ flag: 2 });
-    } else if (i + 1 == 4) {
+    } else if (i == 4) {
       this.setState({ flag: 3 });
     }
   };
-  style1 = { marginLeft: 300 };
+  style1 = { backgroundColor: "Black" };
   style2 = { width: 300 };
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -52,87 +46,124 @@ class App extends Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+  root = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden"
+  };
+  gridList = {
+    width: 500,
+    height: 450,
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: "translateZ(0)"
+  };
+  titleBar = {
+    background:
+      "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, " +
+      "rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)"
+  };
+  icon = {
+    color: "white"
+  };
+
+  images = [
+    {
+      img: "../images/nature1.jpg",
+      path: "/personalInfo",
+      title: "personal Info",
+      featured: true
+    },
+    {
+      img: "../images/takaMountains.jpg",
+      path: "/country/history",
+      title: "History",
+      featured: true
+    },
+    {
+      img: "../images/nature3.jpg",
+      path: "/country/natrue",
+      title: "Camera",
+      featured: true
+    }
+  ];
+
+  style3 = { border: "black solid 1px" };
 
   render() {
-    const drawer = (
-      <div style={this.style2}>
-        <Divider />
-        <List
-          style={{
-            height: 1000
-          }}
-        >
-          {["Who Am I", "Trash", "Importajgfhjtgnt", "Spam"].map(
-            (text, index) => (
-              <ListItem
-                button
-                onClick={() => this.handleClick(index)}
-                key={text}
-              >
-                <ListItemIcon>
-                  {index === 0 ? (
-                    <InboxIcon />
-                  ) : index === 1 ? (
-                    <DeleteSweepIcon />
-                  ) : index === 2 ? (
-                    <StarIcon />
-                  ) : (
-                    <MailIcon />
-                  )}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
-        </List>
-      </div>
-    );
     return (
       <div>
-        {this.state.open ? (
-          <Drawer anchor="left" variant="permanent" open>
-            <div style={{ textAlign: "center" }}>
-              <Typography variant="h6" noWrap>
-                Categories
-              </Typography>
-            </div>
+        <Router>
+          <AppBar position="permanent" style={this.style1}>
+            <Toolbar>
+              <Link to="/">
+                <IconButton>
+                  <Typography variant="h6" noWrap style={{ color: "white" }}>
+                    Abubaker's Website
+                  </Typography>
+                </IconButton>
+              </Link>
 
-            {this.state.open ? drawer : null}
-          </Drawer>
-        ) : null}
+              <Link to="/coutnry">
+                <IconButton color="inherit">
+                  <img src="../images/sudanButton.jpg" style={{ width: 50 }} />
+                </IconButton>
+              </Link>
+            </Toolbar>
+          </AppBar>
 
-        <AppBar
-          style={this.state.open ? this.style1 : null}
-          position="permanent"
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={
-                this.state.open ? this.handleDrawerClose : this.handleDrawerOpen
-              }
-              edge="start"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap>
-              Persistent drawer
-            </Typography>
-          </Toolbar>
-        </AppBar>
+          <Switch>
+            <Route exact path="/personalInfo">
+              <Comp1 />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/country/natrue">
+              <Nature1 />
+            </Route>
+            <Route exact path="/country/history">
+              <History />
+            </Route>
+            <Route exact path="/country">
+              <Country />
+            </Route>
+          </Switch>
 
-        <Container style={{ marginLeft: 300 }}>
-          {this.state.flag === 0 ? (
-            <Comp1 />
-          ) : this.state.flag === 1 ? (
-            <Comp2 />
-          ) : this.state.flag === 2 ? (
-            <Comp3 />
-          ) : (
-            <Comp4 />
-          )}
-        </Container>
+          <Grid container spacing={1}>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={10}>
+              {" "}
+              <div className={this.root}>
+                <GridList
+                  cellHeight={650}
+                  spacing={1}
+                  className={this.gridList}
+                >
+                  {this.images.map(tile => (
+                    <Link to="/personalInfo">
+                      <IconButton>
+                        <GridListTile key={tile.img} cols={2} rows={2}>
+                          <img
+                            src={tile.img}
+                            alt={tile.title}
+                            style={{ width: "65vw" }}
+                          />
+                          <GridListTileBar
+                            title={tile.title}
+                            titlePosition="top"
+                            actionPosition="left"
+                            className={this.images}
+                          />
+                        </GridListTile>
+                      </IconButton>
+                    </Link>
+                  ))}
+                </GridList>
+              </div>
+            </Grid>
+          </Grid>
+        </Router>
       </div>
     );
   }
